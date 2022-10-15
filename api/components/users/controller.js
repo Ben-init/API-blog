@@ -1,5 +1,3 @@
-
-
 module.exports = function(injectedStore) {
     const store = injectedStore || require('./../../../store/dummy');
     const TABLE = 'user';
