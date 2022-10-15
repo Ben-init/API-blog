@@ -1,0 +1,18 @@
+{
+  "name": "curso-microservicios-redis-autenticacion",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "dev": "nodemon api/index.js"
+  },
+  "author": "Benjamin Lopez Petroni <lopezpetroni@outlook.com>",
+  "license": "ISC",
+  "dependencies": {
+    "dotenv": "^16.0.3",
+    "express": "^4.18.2"
+  },
+  "devDependencies": {
+    "nodemon": "^2.0.20"
+  }
+}
