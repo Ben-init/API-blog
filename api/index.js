@@ -1,10 +1,14 @@
 const express = require('express');
 
-const userRouter = require('./components/users/network');
 const { api } = require('../config.js');
+const Routes = require('../network/routes');
+
 const app = express();
 
-app.use('/api/user', userRouter)
+app.use(express.json());
+
+Routes(app);
+
 app.listen(api.port);
 
 console.log('port: ', api.port)
