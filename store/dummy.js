@@ -7,21 +7,21 @@ const db = {
     ]
 };
 
-function list(table) {
+async function list(table) {
     return db[table];
 }
 
-function get(table, id) {
-    const collection = list(table);
-    return collection.filter(item => item.id === id) || null;
+async function get(table, id) {
+    const collection = await list(table);
+    return collection.filter(item => item.id == id) || null;
 }
 
-function upsert(table, data) {
+async function upsert(table, data) {
     db[table].push(data);
 }
 
-function remove(table, id) {
-    return true;
+async function remove(table, id) {
+    delete db[table][id];
 }
 
 module.exports = {
