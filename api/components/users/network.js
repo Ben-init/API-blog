@@ -6,8 +6,8 @@ const controller = require('./index');
 
 router.get('/', async (req, res) => {
     try {
-        const list = await controller.list();
-        response.success(req, res, list);
+        const userList = await controller.list();
+        response.success(req, res, userList);
     } catch (err) {
         response.error(req, res, err);
     }
@@ -16,8 +16,8 @@ router.get('/', async (req, res) => {
 router.get('/:id', async (req, res) => {
     try {
         const { id } = req.params;
-        const list = await controller.get(id);
-        response.success(req, res, list);
+        const user = await controller.get(id);
+        response.success(req, res, user);
     } catch (err) {
         response.error(req, res, err);
     }
@@ -26,8 +26,18 @@ router.get('/:id', async (req, res) => {
 router.post('/', async (req, res) => {
     try {
         const data = req.body;
-        const list = await controller.add(data);
-        response.success(req, res, list);
+        const newUser = await controller.add(data);
+        response.success(req, res, newUser);
+    } catch (err) {
+        response.error(req, res, err);
+    }
+});
+
+router.put('/', async (req, res) => {
+    try {
+        const data = req.body;
+        const updatedUser = await controller.update(data);
+        response.success(req, res, updatedUser);
     } catch (err) {
         response.error(req, res, err);
     }
@@ -36,8 +46,8 @@ router.post('/', async (req, res) => {
 router.delete('/:id', async (req, res) => {
     try {
         const { id } = req.params;
-        const list = await controller.remove(id);
-        response.success(req, res, list);
+        const deletedUser = await controller.remove(id);
+        response.success(req, res, deletedUser);
     } catch (err) {
         response.error(req, res, err);
     }
