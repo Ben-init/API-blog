@@ -33,10 +33,11 @@ router.post('/', async (req, res) => {
     }
 });
 
-router.put('/', async (req, res) => {
+router.put('/:id', async (req, res) => {
     try {
+        const { id } = req.params
         const data = req.body;
-        const updatedUser = await controller.update(data);
+        const updatedUser = await controller.update(data, id);
         response.success(req, res, updatedUser);
     } catch (err) {
         response.error(req, res, err);
