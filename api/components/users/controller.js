@@ -31,6 +31,15 @@ module.exports = function(injectedStore) {
         return store.add(TABLE, newUser);
     }
 
+    async function update(data, id) {
+        const [ user ] = await get(id);
+        const updatedUser = {
+            ...user,
+            ...data,
+        }
+        return store.update(TABLE, id, updatedUser);
+    }
+
     function remove(id) {
         return store.remove(TABLE, id);
     }
@@ -39,6 +48,7 @@ module.exports = function(injectedStore) {
         list,
         get,
         add,
+        update,
         remove
     };
 }
