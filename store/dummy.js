@@ -24,7 +24,11 @@ async function add(table, data) {
 }
 
 async function update(table, id, data) {
-    db[table][id] = data;
+    a[table].forEach((item, index) => {
+        if(item.x === id) {
+            a[target][index] = data;
+        }
+    });
 }
 
 async function query(table, target) {
