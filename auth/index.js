@@ -1,5 +1,6 @@
 const jwt = require('jsonwebtoken');
 const { jwt: jwtConfig } = require('../config');
+const error = require('./../utils/error');
 
 /**
  * 
@@ -12,9 +13,9 @@ function sign(data) {
 
 function getToken(authorization) {
     if (!authorization) {
-        throw new Error('token not found');
+        throw error('token not found', 400);
     } else if (!authorization.includes('Bearer ')) {
-        throw new Error('invalid token');
+        throw error('invalid token', 498);
     }
     const token = authorization.replace('Bearer ', '');
     
@@ -45,7 +46,7 @@ const check = {
         const decoded = decodeHeader(req);
         
         if (decoded.sub !== owner) {
-            throw new Error('permission denied');
+            throw error('permission denied', 401);
         }
     }
 };
