@@ -1,6 +1,11 @@
 const jwt = require('jsonwebtoken');
 const { jwt: jwtConfig } = require('../config');
 
+/**
+ * 
+ * @param {object} data user data
+ * @returns {string} token
+ */
 function sign(data) {
     return jwt.sign(data, jwtConfig.secret);
 }
@@ -30,6 +35,22 @@ function decodeHeader(req) {
     return decoded;
 }
 
+const check = {
+    /**
+     * check whether it is own or not
+     * @param {*} req : request
+     * @param {*} owner : user id
+     */
+    own: (req, owner) => {
+        const decoded = decodeHeader(req);
+        
+        if (decoded.sub !== owner) {
+            throw new Error('permission denied');
+        }
+    }
+};
+
 module.exports = {
     sign,
+    check,
 }
