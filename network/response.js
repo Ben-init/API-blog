@@ -25,8 +25,8 @@ const error = (req, res, message, status = 500) => {
     const errorMessage = message || 'Internal server error';
 
     res.status(status).send({
-        error: errorMessage.message,
-        body: errorMessage.stack,
+        error: '[error]',
+        body: errorMessage.message,
     })
 };
 
