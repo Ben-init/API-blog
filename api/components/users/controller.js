@@ -3,7 +3,6 @@ const auth = require('../auth');
 
 module.exports = function(injectedStore) {
     const store = injectedStore || require('./../../../store/dummy');
-    const auth = require('../auth');
     const TABLE = 'user';
     
     function list() {
