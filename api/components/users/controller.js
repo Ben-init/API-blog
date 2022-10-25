@@ -30,6 +30,13 @@ module.exports = function(injectedStore) {
         return store.add(TABLE, newUser);
     }
 
+    async function follow(from, to) {
+        return store.add(TABLE + '_follow', {
+            user_from: from,
+            user_to: to,
+        });
+    }
+
     async function update(data, id) {
         const [ user ] = await get(id);
         const updatedUser = {
@@ -48,6 +55,7 @@ module.exports = function(injectedStore) {
         get,
         add,
         update,
-        remove
+        remove,
+        follow
     };
 }

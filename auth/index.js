@@ -48,6 +48,10 @@ const check = {
         if (decoded.sub !== owner) {
             throw error('permission denied', 401);
         }
+    },
+
+    logged: (req) => {
+        decodeHeader(req);
     }
 };
 

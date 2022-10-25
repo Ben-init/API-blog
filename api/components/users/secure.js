@@ -6,6 +6,12 @@ function update(req, res, next) {
     next();
 }
 
+function follow(req, res, next) {
+    auth.check.logged(req);
+    next();
+}
+
 module.exports = {
     update,
+    follow
 }
