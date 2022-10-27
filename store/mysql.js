@@ -58,9 +58,17 @@ async function update(table, id,data ) {
     return updatedData;
 }
 
-async function query(table, query) {
-    const response = await connection.query(`SELECT * FROM ${table} WHERE ?`, [query]);
-    return response[0];
+async function query(table, query, join) {
+    let joinQuery = '';
+    
+    if (join) {
+        console.log('deadefae');
+        const key = Object.keys(join)[0];
+        const val = join[key];
+        joinQuery = `JOIN ${key} ON ${table}.${val} = ${key}.id`;
+    }
+    const response = await connection.query(`SELECT * FROM ${table} ${joinQuery} WHERE ${table}.?`, [query]);
+    return response;
 }
 
 module.exports = {
