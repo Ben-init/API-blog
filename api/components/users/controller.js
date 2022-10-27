@@ -37,6 +37,19 @@ module.exports = function(injectedStore) {
         });
     }
 
+    async function followers(userId) {
+        return store.query(TABLE + '_follow', {
+            user_to: userId,
+        });
+    }
+
+
+    async function following(userId) {
+        return store.query(TABLE + '_follow', {
+            user_from: userId,
+        });
+    }
+
     async function update(data, id) {
         const [ user ] = await get(id);
         const updatedUser = {
@@ -56,6 +69,8 @@ module.exports = function(injectedStore) {
         add,
         update,
         remove,
-        follow
+        follow,
+        followers,
+        following
     };
 }

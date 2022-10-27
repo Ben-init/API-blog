@@ -34,6 +34,26 @@ router.post('/', async (req, res, next) => {
     }
 });
 
+router.get('/follow/followers', secure.follow, async (req, res, next) => {
+    try {
+        const userId = req.user.sub
+        const followers = await controller.followers(userId);
+        response.success(req, res, followers);
+    } catch (err) {
+        next(err);
+    }
+});
+
+router.get('/follow/following', secure.follow, async (req, res, next) => {
+    try {
+        const userId = req.user.sub
+        const followers = await controller.following(userId);
+        response.success(req, res, followers);
+    } catch (err) {
+        next(err);
+    }
+});
+
 router.post('/follow/:id', secure.follow, async (req, res, next) => {
     try {
         const { id : to } = req.params;
