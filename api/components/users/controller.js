@@ -37,14 +37,14 @@ module.exports = function(injectedStore) {
         });
     }
 
-    async function followers(userId) {
+    function followers(userId) {
         return store.query(TABLE + '_follow', {
             user_to: userId,
         });
     }
 
 
-    async function following(userId) {
+    function following(userId) {
         return store.query(TABLE + '_follow', {
             user_from: userId,
         });
