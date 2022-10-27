@@ -36,18 +36,25 @@ module.exports = function(injectedStore) {
             user_to: to,
         });
     }
-
+    
     function followers(userId) {
+        const join = {};
+        join[TABLE] = 'user_from';
+        
         return store.query(TABLE + '_follow', {
             user_to: userId,
-        });
+        }, join);
     }
-
-
+    
+    
     function following(userId) {
+        
+        const join = {};
+        join[TABLE] = 'user_to';
+        
         return store.query(TABLE + '_follow', {
             user_from: userId,
-        });
+        }, join);
     }
 
     async function update(data, id) {
