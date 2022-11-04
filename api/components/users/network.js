@@ -34,7 +34,7 @@ router.post('/', async (req, res, next) => {
     }
 });
 
-router.get('/follow/:id/followers', secure.follow, async (req, res, next) => {
+router.get('/follow/:id/followers', async (req, res, next) => {
     try {
         const { id } = req.params;
         const followers = await controller.followers(id);
@@ -44,7 +44,7 @@ router.get('/follow/:id/followers', secure.follow, async (req, res, next) => {
     }
 });
 
-router.get('/follow/:id/following', secure.follow, async (req, res, next) => {
+router.get('/follow/:id/following', async (req, res, next) => {
     try {
         const { id } = req.params;
         const followers = await controller.following(id);
