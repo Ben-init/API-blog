@@ -13,6 +13,10 @@ const config = {
         pass: process.env.MYSQL_PASS,
         database: process.env.MYSQL_DB,
     },
+    mysqlService : {
+        port: process.env.MYSQL_SERVICE_PORT || 3001,
+        host: process.env.MYSQL_SERVICE_HOST || 'localhost',
+    },
 };
 
 module.exports = config;
