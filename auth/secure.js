@@ -1,4 +1,4 @@
-const auth = require('../../../auth');
+const auth = require('./index');
 
 function update(req, res, next) {
     const owner = req.params.id;
