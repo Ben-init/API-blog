@@ -17,6 +17,9 @@ const config = {
         port: process.env.MYSQL_SERVICE_PORT || 3001,
         host: process.env.MYSQL_SERVICE_HOST || 'localhost',
     },
+    post: {
+        port: 3002,
+    }
 };
 
 module.exports = config;
