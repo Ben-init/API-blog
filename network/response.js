@@ -21,12 +21,10 @@ const success = (req, res, message, status = 200) => {
  * @param {number} [status=500] - The status code to send.           
  * @returns None           
  */
-const error = (req, res, message, status = 500) => {
-    const errorMessage = message || 'Internal server error';
-
+const error = (req, res, errorData, status = 500) => {
     res.status(status).send({
         error: '[error]',
-        body: errorMessage.message,
+        body: errorData.message || 'Internal server error',
     })
 };
 
