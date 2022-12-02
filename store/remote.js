@@ -29,6 +29,7 @@ function createRemoteDB(host, port) {
     }
 
     async function request(route, methods, data) {
+        try {            
             const endpoint = `${URL}/${route}`;
             const body = data ? JSON.stringify(data) : null;
             const options = {
@@ -40,10 +41,14 @@ function createRemoteDB(host, port) {
             const json = await response.json();
             
             if (json.error) {
-                throw error(json.body);
+                throw new Error(json.error);
             };
-            
+
             return json.body;
+        } catch (err) {
+            console.error(err);
+            throw error('Internal server error', 500);
+        }
     }
 
 
