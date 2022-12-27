@@ -1,12 +1,19 @@
 const { nanoid } = require('nanoid');
 const auth = require('../auth');
 
-module.exports = function(injectedStore) {
+module.exports = function(injectedStore, injectedCache) {
     const store = injectedStore || require('./../../../store/dummy');
+    const cache = injectedCache || require('./../../../store/dummy'); 
     const TABLE = 'user';
     
-    function list() {
-        return store.list(TABLE);
+    async function list() {
+        const usersCache = await cache.list(TABLE);
+
+        if (!usersCache) {
+            return store.list(TABLE);
+        }
+        
+        return usersCache;
     }
     
     function get(id) {
